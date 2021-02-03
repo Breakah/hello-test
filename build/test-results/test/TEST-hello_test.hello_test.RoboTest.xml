@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hello_test.hello_test.RoboTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-03T14:28:20" hostname="ubuntu" time="26.45">
+  <properties/>
+  <testcase name="roboTest()" classname="hello_test.hello_test.RoboTest" time="26.45"/>
+  <system-out><![CDATA[Total 0.00
+Añade 1 Robo Cola --- Total 1.25
+Añade 1 Robo Beer --- Total 3.25
+Añade 1 Robo Vino --- Total 6.20
+Cantidades en preorder correctas 
+Introduce 34 años
+Total 3 bebidas
+Pedido con exito¡¡¡¡
+]]></system-out>
+  <system-err><![CDATA[1612362502488	geckodriver	INFO	Listening on 127.0.0.1:24297
+1612362503674	mozrunner::runner	INFO	Running command: "/usr/lib/firefox/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4SzIDc"
+*** You are running in headless mode.
+
+(firefox:130596): GLib-GObject-WARNING **: 15:28:24.901: invalid (NULL) pointer instance
+
+(firefox:130596): GLib-GObject-CRITICAL **: 15:28:24.968: g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+
+(/usr/lib/firefox/firefox:130697): GLib-GObject-WARNING **: 15:28:27.802: invalid (NULL) pointer instance
+
+(/usr/lib/firefox/firefox:130697): GLib-GObject-CRITICAL **: 15:28:27.802: g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+
+(/usr/lib/firefox/firefox:130717): GLib-GObject-WARNING **: 15:28:28.177: invalid (NULL) pointer instance
+
+(/usr/lib/firefox/firefox:130717): GLib-GObject-CRITICAL **: 15:28:28.177: g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+
+(/usr/lib/firefox/firefox:130785): GLib-GObject-WARNING **: 15:28:30.715: invalid (NULL) pointer instance
+
+(/usr/lib/firefox/firefox:130785): GLib-GObject-CRITICAL **: 15:28:30.716: g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+1612362511103	Marionette	INFO	Listening on port 41533
+1612362511188	Marionette	WARN	TLS certificate errors will be ignored for this session
+Feb 03, 2021 3:28:31 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'MarionetteEvents'
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1612362526063	Marionette	INFO	Stopped listening on port 41533
+]]></system-err>
+</testsuite>

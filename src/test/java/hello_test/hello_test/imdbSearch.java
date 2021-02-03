@@ -1,0 +1,66 @@
+package hello_test.hello_test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class imdbSearch {
+    private WebDriver driver;
+    private Map<String, Object> vars;
+    JavascriptExecutor js;
+    @BeforeEach
+    public void setUp() {
+        driver = new FirefoxDriver();
+        js = (JavascriptExecutor) driver;
+        vars = new HashMap<String, Object>();
+    }
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
+    @Test
+    public void imdbwandavision() throws InterruptedException {
+        // Test name: imdb wandavision
+        // Step # | name | target | value
+        // 1 | open | / |
+        driver.get("https://www.imdb.com/");
+        try {
+            // 2 posiciona en el frame
+            driver.switchTo().frame(0);
+            // 3 busca el boton aceptar
+            driver.findElement(By.id("introAgreeButton")).click();
+        }
+        catch(Exception e) {
+            System.out.println("No existe ventana 'antes de continuar'");
+        }
+        // 4 posiciona frame general
+        driver.switchTo().defaultContent();
+        // 5 | click | name=q |
+        driver.findElement(By.name("q")).click();
+        // 6 | type | name=q | wandavision
+        driver.findElement(By.name("q")).sendKeys("wandavision");
+        // 7 | sendKeys | name=q | ${KEY_ENTER}
+        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+        WebElement busca = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.elementToBeClickable(By.linkText("WandaVision")));
+        busca.click();
+        busca = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.elementToBeClickable(By.linkText("TRIVIA")));
+        busca.click();
+
+        //Thread.sleep(2000);
+        // 8 | click | linkText=WandaVision |
+        //driver.findElement(By.linkText("WandaVision")).click();
+        //Thread.sleep(2000);
+        // 9 | click | linkText=TRIVIA |
+        //driver.findElement(By.linkText("TRIVIA")).click();
+    }
+
+}
