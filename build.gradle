@@ -23,13 +23,14 @@ dependencies {
     testImplementation("io.qameta.allure:allure-selenide:${allureVersion}")
     testImplementation('org.hamcrest:hamcrest:2.2')
     testImplementation('org.slf4j:slf4j-simple:1.7.29')
-
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 test {
     useJUnitPlatform()
+    systemPropeties[sele]="firefox"
+    systemPropeties[sele]="firefox"
 }
 allure {
     autoconfigure = true

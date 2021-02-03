@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,9 @@ public class GoogeTest {
   JavascriptExecutor js;
   @BeforeEach
   public void setUp() {
-    driver = new FirefoxDriver();
+    FirefoxOptions options= new FirefoxOptions();
+    options.setHeadless(true);
+    driver = new FirefoxDriver(options);
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
@@ -32,10 +35,15 @@ public class GoogeTest {
     // Step # | name | target | value
     // 1 | open | / | 
     driver.get("https://www.google.com/");
-    // 2 posiciona en el frame
-    driver.switchTo().frame(0);
-    // 3 busca el boton aceptar
-    driver.findElement(By.id("introAgreeButton")).click();
+    try {
+      // 2 posiciona en el frame
+      driver.switchTo().frame(0);
+      // 3 busca el boton aceptar
+      driver.findElement(By.id("introAgreeButton")).click();
+    }
+    catch(Exception e) {
+      System.out.println("No existe ventana 'antes de continuar'");
+    }
     // 4 posiciona frame general
     driver.switchTo().defaultContent();
     // 5 | click | name=q |
