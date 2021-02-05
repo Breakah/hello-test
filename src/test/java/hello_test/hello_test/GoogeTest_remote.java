@@ -27,7 +27,7 @@ public class GoogeTest_remote {
     ChromeOptions chromeOptions = new ChromeOptions();
     driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
     js = (JavascriptExecutor) driver;
-    vars = new HashMap<String, Object>();
+    vars = new HashMap<String, Object>();;
   }
   @AfterEach
   public void tearDown() {
