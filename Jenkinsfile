@@ -16,7 +16,8 @@ pipeline {
         stage('Setup') {
             steps {
                 git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'remote'
-            }            
+            } 
+        }           
         
         stage('Test-firefox'){
             step s{
@@ -45,8 +46,8 @@ pipeline {
                     sh './gradlew assemble'
                 }
             }
-            pos t{
-                succes s{
+            post{
+                success{
                     archiveArtifacts 'build/libs/*.jar'
                     echo ".Jar Guardados en build/libs"
                 }
@@ -58,6 +59,4 @@ pipeline {
             }
         }
     }
-}
-
 }
