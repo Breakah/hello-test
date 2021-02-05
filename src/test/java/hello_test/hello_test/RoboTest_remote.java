@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoboTest_remote {
@@ -22,11 +24,9 @@ public class RoboTest_remote {
     private Map<String, Object> vars;
     JavascriptExecutor js;
     @BeforeEach
-    public void setUp() throws MalformedURLException {
-        //ChromeOptions options= new ChromeOptions();
-        //FirefoxOptions options = new FirefoxOptions();
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
+    public void setUp() {
+        open("about:blank");
+        driver = getWebDriver();
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }

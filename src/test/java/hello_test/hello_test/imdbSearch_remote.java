@@ -14,6 +14,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 
 public class imdbSearch_remote {
     private WebDriver driver;
@@ -21,10 +24,8 @@ public class imdbSearch_remote {
     JavascriptExecutor js;
     @BeforeEach
     public void setUp() throws MalformedURLException {
-        //ChromeOptions options = new ChromeOptions();
-        //FirefoxOptions options = new FirefoxOptions();
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
+        open("about:blank");
+        driver = getWebDriver();
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }

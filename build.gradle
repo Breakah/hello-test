@@ -29,9 +29,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    systemProperties ["selenide.remote"]='server'
-    systemProperties ["selenide.browser"]='browser'
-    systemProperties ["selenide.headless"]='headless'
+    systemProperties ["selenide.remote"]='http://localhost:4444'
+    systemProperties ["selenide.browser"]='firefox'
+    systemProperties ["selenide.headless"]='true'
 }
 
 
