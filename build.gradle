@@ -29,8 +29,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    systemPropeties[sele]="firefox"
-    systemPropeties[sele]="firefox"
+    systemProperty "selenide.browser","firefox"
 }
 allure {
     autoconfigure = true

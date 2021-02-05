@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,15 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class imdbSearch {
+public class imdbSearch_remote {
     private WebDriver driver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
     @BeforeEach
     public void setUp() throws MalformedURLException {
-        FirefoxOptions options= new FirefoxOptions();
-        options.setHeadless(true);
-        driver = new FirefoxDriver(options);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }
@@ -33,7 +31,7 @@ public class imdbSearch {
         driver.quit();
     }
     @Test
-    public void imdbwandavision() throws InterruptedException {
+    public void imdbwandavision() {
         // Test name: imdb wandavision
         // Step # | name | target | value
         // 1 | open | / |

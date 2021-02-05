@@ -5,23 +5,27 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RoboTest {
+public class RoboTest_remote {
     private WebDriver driver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
     @BeforeEach
-    public void setUp() {
-        FirefoxOptions options= new FirefoxOptions();
-        options.setHeadless(true);
-        driver = new FirefoxDriver(options);
+    public void setUp() throws MalformedURLException {
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }
@@ -34,7 +38,7 @@ public class RoboTest {
         // Test name: RoboTest
         // Step # | name | target | value
 
-        driver.get("http://localhost:3000/");
+        driver.get("http://10.250.8.1:3000/");
         Thread.sleep(2000);
         vars.put("total", driver.findElement(By.cssSelector("tr:nth-child(4) > .ng-binding")).getText());
         assertEquals(vars.get("total").toString(), "€0.00");
