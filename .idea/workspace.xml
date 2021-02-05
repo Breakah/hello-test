@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c43e56ed-9ea2-43db-a42f-f36454cf0d08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/GoogeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/GoogeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/GoogeTest_remote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/GoogeTest_remote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/RoboTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/RoboTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/imdbSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hello_test/hello_test/imdbSearch.java" afterDir="false" />
     </list>
