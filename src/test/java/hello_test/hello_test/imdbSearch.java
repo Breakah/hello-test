@@ -23,7 +23,7 @@ public class imdbSearch {
     @BeforeEach
     public void setUp() throws MalformedURLException {
         FirefoxOptions options= new FirefoxOptions();
-        options.setHeadless(true);
+        options.setHeadless(false);
         driver = new FirefoxDriver(options);
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();

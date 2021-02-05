@@ -20,7 +20,7 @@ public class GoogeTest {
   @BeforeEach
   public void setUp() {
     FirefoxOptions options= new FirefoxOptions();
-    options.setHeadless(true);
+    options.setHeadless(false);
     driver = new FirefoxDriver(options);
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
