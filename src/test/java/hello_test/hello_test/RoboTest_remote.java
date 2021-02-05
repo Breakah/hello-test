@@ -25,8 +25,8 @@ public class RoboTest_remote {
     public void setUp() throws MalformedURLException {
         //ChromeOptions options= new ChromeOptions();
         //FirefoxOptions options = new FirefoxOptions();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
+        //ChromeOptions chromeOptions = new ChromeOptions();
+        //driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }

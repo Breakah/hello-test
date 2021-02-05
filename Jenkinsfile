@@ -8,31 +8,35 @@ pipeline {
     options {
         ansiColor('xterm')
     }
+    environment {
+        SERVER = 'https://10.250.8.1:4444'
+        HEADLESS = 'false'
+    }
     stages {
-        stage('Setup'){
-            steps{
-                git url:'http://10.250.8.1:8929/root/hello-test.git',branch:'remote' 
+        stage('Setup') {
+            steps {
+                git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'remote'
             }            
-        }
-        stage('Test'){
-            steps{
-                withGradle{
-                    sh './gradlew test'
+        
+        stage('Test-firefox'){
+            step s{
+                withGradl e{
+                    sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
-            post{
-                always{
-                    junit 'build/test-results/test/TEST-*.xml'  
-                    publishHTML([
-                        allowMissing: false, 
-                        alwaysLinkToLastBuild: false, 
-                        keepAll: false, 
-                        reportDir: 'build/reports/tests/test', 
-                        reportFiles: 'index.html', 
-                        reportName: 'HTML Report', 
-                        reportTitles: 'HTML Report'])
-                }
-            }          
+           // post{
+             //   always{
+               //     junit 'build/test-results/test/TEST-*.xml'  
+                 //   publishHTML([
+                   //     allowMissing: false, 
+                     //   alwaysLinkToLastBuild: false, 
+                 //       keepAll: false, 
+                   //     reportDir: 'build/reports/tests/test', 
+                     //   reportFiles: 'index.html', 
+                     //   reportName: 'HTML Report', 
+                     //   reportTitles: 'HTML Report'])
+               // }
+            //}          
         }
 
         stage('Build') {
@@ -41,8 +45,8 @@ pipeline {
                     sh './gradlew assemble'
                 }
             }
-            post{
-                success{
+            pos t{
+                succes s{
                     archiveArtifacts 'build/libs/*.jar'
                     echo ".Jar Guardados en build/libs"
                 }
@@ -56,4 +60,4 @@ pipeline {
     }
 }
 
-
+}

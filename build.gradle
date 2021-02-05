@@ -29,8 +29,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    systemProperty "selenide.browser","firefox"
+    systemProperties ["selenide.remote"]='server'
+    systemProperties ["selenide.browser"]='browser'
+    systemProperties ["selenide.headless"]='headless'
 }
+
+
 allure {
     autoconfigure = true
     version = "${allureVersion}"
