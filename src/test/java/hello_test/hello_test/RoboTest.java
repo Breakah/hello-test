@@ -19,6 +19,8 @@ public class RoboTest {
     JavascriptExecutor js;
     @BeforeEach
     public void setUp() {
+        //ChromeOptions options = new ChromeOptions()
+        //OperaOptions options = new OperaOptions()
         FirefoxOptions options= new FirefoxOptions();
         options.setHeadless(false);
         driver = new FirefoxDriver(options);
