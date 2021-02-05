@@ -20,8 +20,8 @@ pipeline {
         }           
         
         stage('Test-firefox'){
-            step s{
-                withGradl e{
+            steps{
+                withGradle{
                     sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
