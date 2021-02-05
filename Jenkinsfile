@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Setup'){
             steps{
-                git url:'http://10.250.8.1:8929/root/hello-test.git',branch:'master' 
+                git url:'http://10.250.8.1:8929/root/hello-test.git',branch:'headless' 
             }            
         }
         stage('Test'){
