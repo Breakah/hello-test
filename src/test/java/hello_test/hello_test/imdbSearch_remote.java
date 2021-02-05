@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,7 +21,8 @@ public class imdbSearch_remote {
     JavascriptExecutor js;
     @BeforeEach
     public void setUp() throws MalformedURLException {
-
+        //ChromeOptions options = new ChromeOptions();
+        //FirefoxOptions options = new FirefoxOptions();
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
         js = (JavascriptExecutor) driver;
