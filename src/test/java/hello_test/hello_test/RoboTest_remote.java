@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -24,9 +25,13 @@ public class RoboTest_remote {
     private Map<String, Object> vars;
     JavascriptExecutor js;
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         open("about:blank");
         driver = getWebDriver();
+        /*DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(System.getProperty("browser","firefox"));
+        driver = new RemoteWebDriver(new URL("http://localhost:4444"),capabilities);
+*/
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }
