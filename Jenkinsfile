@@ -23,6 +23,7 @@ pipeline {
             steps{
                 withGradle{
                     sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
+                    sh './gradlew checkstyleTest -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
             post{
