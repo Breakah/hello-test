@@ -29,15 +29,6 @@ pipeline {
             post{
                always{
                     //junit 'build/test-results/test/TEST-*.xml'
-                    publishHTML([
-                       allowMissing: false, 
-                       alwaysLinkToLastBuild: false, 
-                       keepAll: false, 
-                       reportDir: 'build/reports/pmd', 
-                       reportFiles: '*.html', 
-                       reportName: 'HTML pmd',
-                       reportTitles: 'HTML pmd'
-		            ])
                     recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
                 }
             }          
