@@ -19,7 +19,7 @@ pipeline {
                 sh './gradlew clean'
             }            
         }
-        stage('Test-firefox-checkstyle'){
+        stage('Test-firefox-spotbugs'){
             steps{
                 withGradle{
                      sh './gradlew clean check -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
