@@ -31,14 +31,14 @@ pipeline {
                        allowMissing: false, 
                        alwaysLinkToLastBuild: false, 
                        keepAll: false, 
-                       reportDir: 'build/reports/tests/test', 
-                       reportFiles: 'index.html', 
+                       reportDir: 'build/reports/pmd', 
+                       reportFiles: '*.html', 
                        reportName: 'HTML Report', 
                        reportTitles: 'HTML Report'
 		    ])
 		    recordIssues{
 		       ennableForFailure: true, aggregatingResults: true,
-		       tools: [java(), checkStyle(pattern: 'build/reports/checkstyle/*.xml', reportEncoding: 'UTF-8')]
+		       tools: [pmdParser(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
 		    }
                 }
             }          
