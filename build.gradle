@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'io.qameta.allure' version '2.8.1'
-    id 'checkstyle'
+    id "com.github.spotbugs" version "4.6.0"
 }
 
 group 'hello_test'
@@ -29,6 +29,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
+
 test {
     useJUnitPlatform()
     systemProperties ["selenide.remote"]='http://localhost:4444'
@@ -46,11 +47,7 @@ allure {
     }
 }
 
-checkstyle{
-    config = rootProject.resources.text.fromFile('google_checks.xml')
-    ignoreFailures=true
+spotbugs {
+    ignoreFailures = true
+    reportsDir = file("$buildDir/reports/spotbugs")
 }
-checkstyleTest {
-    source ='src/test/java'
-}
-

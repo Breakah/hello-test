@@ -22,24 +22,15 @@ pipeline {
         stage('Test-firefox-checkstyle'){
             steps{
                 withGradle{
-                    sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
-                    sh './gradlew checkstyleTest -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
+                     sh './gradlew clean check -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
             post{
                always{
-                    junit 'build/test-results/test/TEST-*.xml'  
-                    publishHTML([
-                       allowMissing: false, 
-                       alwaysLinkToLastBuild: false, 
-                       keepAll: false, 
-                       reportDir: 'build/reports/', 
-                       reportFiles: 'index.html', 
-                       reportName: 'HTML Report', 
-                       reportTitles: 'HTML Report'
-		        ])
-            recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/reports/checkstyle/*.xml')                
-            }          
+                    //junit 'build/test-results/test/TEST-*.xml'  
+                    
+            	recordIssues enabledForFailure: true, tool: spotbugs(pattern: 'build/reports/spotbugs/*.xml')                
+            	}          
             }
         }
         stage('Build') {
