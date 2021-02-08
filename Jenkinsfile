@@ -21,7 +21,7 @@ pipeline {
         stage('Test-firefox'){
             steps{
                 withGradle{
-                    sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
+                    sh './gradlew pmdTest -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
             post{
@@ -37,7 +37,7 @@ pipeline {
                        reportTitles: 'HTML Report'
 		    ])
 		    recordIssues{
-		       ennableForFailure: true, aggregatingResults: true,
+		       //ennableForFailure: true, aggregatingResults: true,
 		       tools: [pmdParser(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
 		    }
                 }
