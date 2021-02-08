@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'checkstyle'
+                git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'spotbugs'
                 sh './gradlew clean'
             }            
         }
