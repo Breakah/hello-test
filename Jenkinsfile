@@ -23,12 +23,22 @@ pipeline {
         stage('Test-firefox-pmd'){
             steps{
                 withGradle{
+                    sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                     sh './gradlew pmdTest -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
             post{
                always{
-                    //junit 'build/test-results/test/TEST-*.xml'
+                    junit 'build/test-results/test/TEST-*.xml'
+                    publishHTML([
+                       allowMissing: false,
+                       alwaysLinkToLastBuild: false,
+                       keepAll: false,
+                       reportDir: 'build/reports/',
+                       reportFiles: 'index.html',
+                       reportName: 'HTML Report',
+                       reportTitles: 'HTML Report'
+                        ])
                     recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
                 }
             }          
