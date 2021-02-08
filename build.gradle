@@ -47,6 +47,7 @@ allure {
 }
 
 checkstyle{
+    config = rootProject.resources.text.fromFile('google_checks.xml')
     ignoreFailures=true
 }
 checkstyleTest {

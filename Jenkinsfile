@@ -19,8 +19,8 @@ pipeline {
             }            
         
         stage('Test-firefox'){
-            step s{
-                withGradl e{
+            steps{
+                withGradle{
                     sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
@@ -36,11 +36,10 @@ pipeline {
                        reportName: 'HTML Report', 
                        reportTitles: 'HTML Report'
 		    ])
-            	    recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
-                    recordIssues enabledForFailure: true, tool: checkStyle()
-                    recordIssues enabledForFailure: true, tool: spotBugs()
-                    recordIssues enabledForFailure: true, tool: cpd(pattern: '**/build/cpd.xml')
-                    recordIssues enabledForFailure: true, tool: pmdParser(pattern: '**/build/pmd.xml')
+		    recordIssues{
+		       ennableForFailure: true, aggregatingResults: true,
+		       tools: [java(), checkStyle(pattern: 'build/reports/checkstyle/*.xml', reportEncoding: 'UTF-8')]
+		    }
                 }
             }          
         }
