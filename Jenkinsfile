@@ -15,10 +15,11 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'remote'
+                git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'checkstyle'
+                sh './gradlew clean'
             }            
-        
-        stage('Test-firefox'){
+        }
+        stage('Test-firefox-checkstyle'){
             steps{
                 withGradle{
                     sh './gradlew test -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
@@ -31,27 +32,23 @@ pipeline {
                        allowMissing: false, 
                        alwaysLinkToLastBuild: false, 
                        keepAll: false, 
-                       reportDir: 'build/reports/tests/test', 
+                       reportDir: 'build/reports/', 
                        reportFiles: 'index.html', 
                        reportName: 'HTML Report', 
                        reportTitles: 'HTML Report'
-		    ])
-		    recordIssues{
-		       ennableForFailure: true, aggregatingResults: true,
-		       tools: [java(), checkStyle(pattern: 'build/reports/checkstyle/*.xml', reportEncoding: 'UTF-8')]
-		    }
-                }
+		        ])
+            recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/reports/checkstyle/*.xml')                
             }          
+            }
         }
-
         stage('Build') {
             steps {                
                 withGradle {
                     sh './gradlew assemble'
                 }
             }
-            pos t{
-                succes s{
+            post{
+                success{
                     archiveArtifacts 'build/libs/*.jar'
                     echo ".Jar Guardados en build/libs"
                 }
@@ -63,6 +60,4 @@ pipeline {
             }
         }
     }
-}
-
 }
