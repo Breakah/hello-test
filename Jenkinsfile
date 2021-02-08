@@ -16,9 +16,10 @@ pipeline {
         stage('Setup') {
             steps {
                 git url: 'http://10.250.8.1:8929/root/hello-test.git', branch: 'pmd'
-            }            
+            }
+        }
         
-        stage('Test-firefox'){
+        stage('Test-firefox-pmd'){
             steps{
                 withGradle{
                     sh './gradlew pmdTest -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
@@ -36,10 +37,10 @@ pipeline {
                        reportName: 'HTML Report', 
                        reportTitles: 'HTML Report'
 		    ])
-		    recordIssues{
-		       //ennableForFailure: true, aggregatingResults: true,
-		       tools: [pmdParser(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
-		    }
+                recordIssues{
+                   //ennableForFailure: true, aggregatingResults: true,
+                   tools: [pmdParser(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
+                }
                 }
             }          
         }
@@ -50,7 +51,7 @@ pipeline {
                     sh './gradlew assemble'
                 }
             }
-            pos t{
+            post{
                 succes s{
                     archiveArtifacts 'build/libs/*.jar'
                     echo ".Jar Guardados en build/libs"
@@ -63,6 +64,4 @@ pipeline {
             }
         }
     }
-}
-
 }
