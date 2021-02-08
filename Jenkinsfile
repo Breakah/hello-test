@@ -33,7 +33,7 @@ pipeline {
             	}          
             }
         }
-        stage('Build') {
+       /* stage('Build') {
             steps {                
                 withGradle {
                     sh './gradlew assemble'
@@ -50,6 +50,6 @@ pipeline {
             steps {
                 echo "Deploy...."
             }
-        }
+        }*/
     }
 }
