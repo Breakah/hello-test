@@ -36,11 +36,12 @@ pipeline {
                        reportFiles: '*.html', 
                        reportName: 'HTML Report', 
                        reportTitles: 'HTML Report'
-		    ])
-                recordIssues{
-                   //ennableForFailure: true, aggregatingResults: true,
-                   tools: [pmdParser(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
-                }
+		            ])
+                    recordIssues{
+                        ennableForFailure: true
+                        aggregatingResults: true
+                        tools:[pmdParser(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
+                    }
                 }
             }          
         }
@@ -52,7 +53,7 @@ pipeline {
                 }
             }
             post{
-                succes s{
+                success{
                     archiveArtifacts 'build/libs/*.jar'
                     echo ".Jar Guardados en build/libs"
                 }
