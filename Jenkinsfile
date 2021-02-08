@@ -38,15 +38,10 @@ pipeline {
                        reportName: 'HTML Report', 
                        reportTitles: 'HTML Report'
 		            ])
-                    recordIssues
-                        enableForFailure: true
-                        aggregatingResults: true
-                        tool:[pmdParser(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
-
+                    recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
                 }
             }          
         }
-
         stage('Build') {
             steps {                
                 withGradle {
