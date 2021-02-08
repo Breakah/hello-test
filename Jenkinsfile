@@ -22,7 +22,7 @@ pipeline {
         stage('Test-firefox-spotbugs'){
             steps{
                 withGradle{
-                     sh './gradlew clean check -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
+                     sh './gradlew check -Pserver=${SERVER} -Pbrowser=firefox -Pheadlees=${HEADLESS}'
                 }
             }
             post{
